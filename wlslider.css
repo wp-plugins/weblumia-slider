@@ -1,0 +1,195 @@
+/**
+ * WBSlider  - Fully loaded, responsive content slider
+ * http://www.weblumia.com
+ *
+ * Author: Jinesh.P.V
+ *
+ * Co founder of Weblumia infomatics
+ * http://www.weblumia.com
+ */
+
+
+/** RESET AND LAYOUT
+===================================*/
+
+.wl-wrapper {
+	position: relative;
+	margin: 0 auto 60px;
+	padding: 0;
+	*zoom: 1;
+}
+
+.wl-wrapper img {
+	max-width: 100%;
+	display: block;
+}
+
+/** THEME
+===================================*/
+
+.wl-wrapper .wl-section {
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: solid #fff 5px;
+	left: -5px;
+	background: #fff;
+}
+
+.wl-wrapper .wl-pager,
+.wl-wrapper .wl-controls-auto {
+	position: absolute;
+	bottom: -30px;
+	width: 100%;
+}
+
+/* LOADER */
+
+.wl-wrapper .wl-loading {
+	min-height: 50px;
+	background: url(images/wl_loader.gif) center center no-repeat #fff;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2000;
+}
+
+/* PAGER */
+
+.wl-wrapper .wl-pager {
+	text-align: center;
+	font-size: .85em;
+	font-family: Arial;
+	font-weight: bold;
+	color: #666;
+	padding-top: 20px;
+}
+
+.wl-wrapper .wl-pager .wl-pager-item,
+.wl-wrapper .wl-controls-auto .wl-controls-auto-item {
+	display: inline-block;
+	*zoom: 1;
+	*display: inline;
+}
+
+.wl-wrapper .wl-pager.wl-default-pager a {
+	background: url(images/slide_nav.png) no-repeat 0 0;
+	display: block;
+	width: 24px;
+	height: 24px;
+	margin: 0 -2px;
+	text-indent:-9999px;
+}
+
+.wl-wrapper .wl-pager.wl-default-pager a:hover,
+.wl-wrapper .wl-pager.wl-default-pager a.active {
+	background:  url(images/slide_active_nav.png) no-repeat 0 0;
+}
+
+/* DIRECTION CONTROLS (NEXT / PREV) */
+
+.wl-wrapper .wl-prev {
+	left: 10px;
+	background: url(images/controls.png) no-repeat 0 -31px;
+}
+
+.wl-wrapper .wl-next {
+	right: 10px;
+	background: url(images/controls.png) no-repeat -42px -31px;
+}
+
+.wl-wrapper .wl-prev:hover {
+	background-position: 0 0;
+}
+
+.wl-wrapper .wl-next:hover {
+	background-position: -43px 0;
+}
+
+.wl-wrapper .wl-controls-direction a {
+	position: absolute;
+	top: 50%;
+	margin-top: -16px;
+	outline: 0;
+	width: 32px;
+	height: 32px;
+	text-indent: -9999px;
+	z-index: 9999;
+}
+
+.wl-wrapper .wl-controls-direction a.disabled {
+	display: none;
+}
+
+/* AUTO CONTROLS (START / STOP) */
+
+.wl-wrapper .wl-controls-auto {
+	text-align: center;
+}
+
+.wl-wrapper .wl-controls-auto .wl-start {
+	display: block;
+	text-indent: -9999px;
+	width: 10px;
+	height: 11px;
+	outline: 0;
+	background: url(images/controls.png) -86px -11px no-repeat;
+	margin: 0 3px;
+}
+
+.wl-wrapper .wl-controls-auto .wl-start:hover,
+.wl-wrapper .wl-controls-auto .wl-start.active {
+	background-position: -86px 0;
+}
+
+.wl-wrapper .wl-controls-auto .wl-stop {
+	display: block;
+	text-indent: -9999px;
+	width: 9px;
+	height: 11px;
+	outline: 0;
+	background: url(images/controls.png) -86px -44px no-repeat;
+	margin: 0 3px;
+}
+
+.wl-wrapper .wl-controls-auto .wl-stop:hover,
+.wl-wrapper .wl-controls-auto .wl-stop.active {
+	background-position: -86px -33px;
+}
+
+/* PAGER WITH AUTO-CONTROLS HYBRID LAYOUT */
+
+.wl-wrapper .wl-controls.wl-has-controls-auto.wl-has-pager .wl-pager {
+	text-align: left;
+	width: 80%;
+}
+
+.wl-wrapper .wl-controls.wl-has-controls-auto.wl-has-pager .wl-controls-auto {
+	right: 0;
+	width: 35px;
+}
+
+/* IMAGE CAPTIONS */
+
+.wl-wrapper .wl-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #666\9;
+	background: rgba(80, 80, 80, 0.75);
+	width: 100%;
+}
+
+.wl-wrapper .wl-caption span {
+	color: #fff;
+	font-family: Arial;
+	display: block;
+	font-size: .85em;
+	padding: 10px;
+}
+.wl-section ul li{
+	padding:0;
+	margin:0;
+}
