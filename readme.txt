@@ -13,8 +13,8 @@ Fully loaded, responsive and video content slider
 == Description ==
 
 Features
-* Admin interface to add, edit and manage slier and images
-* Capable of handling multiple images and videos
+1.Admin interface to add, edit and manage slier and images
+2.Capable of handling multiple images and videos
 
 Shortcodes
 
@@ -28,7 +28,7 @@ show_lumiaslider() - For display slider on page or posts
 
 Support
 
-So that others can share in the answer, please submit your support requests through the WordPress forums for [Lumia Slider](http://wordpress.org/support/plugin/lumia-slider).
+So that others can share in the answer, please submit your support requests through the WordPress forums for [WebLumia Slider](http://wordpress.org/support/plugin/lumia-slider).
 
 If you want private or priority support, please [donate](http://weblumia.com/donate) at least $5 USD to cover my time.
 
@@ -37,16 +37,16 @@ If you want private or priority support, please [donate](http://weblumia.com/don
 == Installation ==
 
 1.     Via WordPress Admin > Plugins > Add New, Upload the lumia_slider.zip file
-1.     Alternately, via FTP, upload lumia_slider directory to the /wp-content/plugins/ directory
-1.     Activate the 'Lumia Slider' plugin after uploading or through WordPress Admin > Plugins
+2.     Alternately, via FTP, upload lumia_slider directory to the /wp-content/plugins/ directory
+3.     Activate the 'Lumia Slider' plugin after uploading or through WordPress Admin > Plugins
 
 Usage
 
 1. Add and manage the slider through the 'Lumia Slider' menu in the WordPress admin area
-1. To display Lumia Slider in the sidebar, go to 'Widgets' menu and drag the 'Lumia Slider ' into the desired widget area
-1. Configure the 'Lumia Slider' to select quotes and display as needed
-1. Use the [lumiaslider id="{slider_id}"] shortcodes to display slider on a page or in a post
-1. Read FAQ 1 for show_lumiaslider() theme functions usage
+2. To display Lumia Slider in the sidebar, go to 'Widgets' menu and drag the 'WebLumia Slider ' into the desired widget area
+3. Configure the 'Lumia Slider' to select quotes and display as needed
+4. Use the [lumiaslider id="{slider_id}"] shortcodes to display slider on a page or in a post
+5. Read FAQ 1 for show_lumiaslider() theme functions usage
 
 == Frequently asked questions ==
 
