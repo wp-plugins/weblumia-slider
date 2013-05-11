@@ -23,7 +23,7 @@ Shortcodes
 
 Theme Functions
 
-show_lumiaslider() - For display slider on page or posts
+show_lumiaslider({slider_id}) - For display slider on page or posts
 
 
 Support
