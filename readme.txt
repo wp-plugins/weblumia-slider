@@ -1,4 +1,4 @@
-=== WebLumia Slider ===
+=== Weblumia Slider ===
 Contributors: Jinesh.P.V
 Donate link: http://weblumia.com/donate/
 Tags: lumia-slider, sliders, image slider,responsive, responsive slider, content slider, video slider
