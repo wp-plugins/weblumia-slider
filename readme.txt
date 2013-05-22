@@ -28,7 +28,7 @@ show_lumiaslider({slider_id}) - For display slider on page or posts
 
 Support
 
-So that others can share in the answer, please submit your support requests through the WordPress forums for [WebLumia Slider](http://wordpress.org/support/plugin/lumia-slider).
+So that others can share in the answer, please submit your support requests through the WordPress forums for [WebLumia Slider](http://wordpress.org/support/plugin/weblumia-slider).
 
 If you want private or priority support, please [donate](http://weblumia.com/donate) at least $5 USD to cover my time.
 
