@@ -13,8 +13,10 @@ Fully loaded, responsive and video content slider
 == Description ==
 
 Features
-1.Admin interface to add, edit and manage slier and images
-2.Capable of handling multiple images and videos
+
+1.Admin interface to add, edit and manage slier and images.
+2.Capable of handling multiple images and videos.
+
 
 Shortcodes
 
@@ -42,11 +44,11 @@ If you want private or priority support, please [donate](http://weblumia.com/don
 
 Usage
 
-1. Add and manage the slider through the 'Lumia Slider' menu in the WordPress admin area
-2. To display Lumia Slider in the sidebar, go to 'Widgets' menu and drag the 'WebLumia Slider ' into the desired widget area
-3. Configure the 'Lumia Slider' to select quotes and display as needed
-4. Use the [lumiaslider id="{slider_id}"] shortcodes to display slider on a page or in a post
-5. Read FAQ 1 for show_lumiaslider() theme functions usage
+1. Add and manage the slider through the 'Lumia Slider' menu in the WordPress admin area.
+2. To display Lumia Slider in the sidebar, go to 'Widgets' menu and drag the 'WebLumia Slider ' into the desired widget area.
+3. Configure the 'Lumia Slider' to select quotes and display as needed.
+4. Use the [lumiaslider id="{slider_id}"] shortcodes to display slider on a page or in a post.
+5. Read FAQ 1 for show_lumiaslider() theme functions usage.
 
 == Frequently asked questions ==
 
