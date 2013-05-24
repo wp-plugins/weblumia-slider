@@ -14,8 +14,8 @@ Fully loaded, responsive and video content slider
 
 Features
 
-1.Admin interface to add, edit and manage slier and images.
-2.Capable of handling multiple images and videos.
+1. Admin interface to add, edit and manage slier and images.
+2. Capable of handling multiple images and videos.
 
 
 Shortcodes
