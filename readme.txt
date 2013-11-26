@@ -66,11 +66,12 @@ An answer to that question.
 
 == Changelog ==
 
-
-
 == Upgrade notice ==
-
-
 
 == Arbitrary section 1 ==
 
+== Upgrade Notice ==
+
+= 2.1 =
+
+This version fixes a security related bug. Upgrade immediately.

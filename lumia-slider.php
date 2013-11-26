@@ -7,7 +7,7 @@ Plugin URI: http://www.weblumia.com
 
 Description: Fully loaded, responsive and video content slider
 
-Version: 2.0
+Version: 2.1
 
 Author: Jinesh.P.V
 
@@ -334,9 +334,9 @@ function load_lumia_scripts() {
 
 		wp_enqueue_script( 'jquery-effects-core ', array( 'jquery' ), '1.3' );
 
-		wp_enqueue_script( 'fitvids', WP_PLUGIN_URL . '/lumia-slider/js/jquery.fitvids.js', array( 'jquery' ), '1.0' );
+		wp_enqueue_script( 'fitvids', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.fitvids.js', array( 'jquery' ), '1.0' );
 
-		wp_enqueue_script( 'wlslider', WP_PLUGIN_URL . '/lumia-slider/js/jquery.wlslider.js', array( 'jquery' ), '1.1.0' );
+		wp_enqueue_script( 'wlslider', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.wlslider.js', array( 'jquery' ), '1.1.0' );
 
 	}
 
