@@ -3,7 +3,7 @@
 Plugin Name: Lumia Slider
 Plugin URI: http://www.weblumia.com
 Description: Fully loaded, responsive and video content slider
-Version: 2.1
+Version: 2.2
 Author: Jinesh.P.V
 Author URI: http://www.weblumia.com
 */
@@ -36,21 +36,25 @@ add_action( 'widgets_init', create_function( '', 'register_widget( "lumia_slider
 // Activation hook for creating the initial DB table
 register_activation_hook( __FILE__, 'lumia_activate' );
 add_theme_support( 'post-thumbnails' );
+
 function lumia_activate() {
 	lumiaslider_create_db_table();
 }
+
 function do_output_buffer() {
-        ob_start();
+	ob_start();
 }
+
 function lumia_add_menu() {
 	add_menu_page( 'Lumia Slider', 'Lumia Slider', 'administrator', 'lumia_settings', 'lumia_menu_function' );
 	add_submenu_page( 'lumia_settings', 'Lumia Slider Settings', 'Settings', 'manage_options', 'lumia_settings', 'lumia_add_menu' ); 
 	add_submenu_page( 'lumia_settings', 'All Sliders', 'All Sliders', 'manage_options', 'lumia_sliders', 'lumia_all_sliders' ); 
-	//add_submenu_page( 'lumia_settings', 'Add New Slider', 'Add New Slider', 'manage_options', 'lumia_add_new', 'lumia_add_slider' ); 
 }
+
 /********************************************************/
 /*           lumia sliders database table create          */
 /********************************************************/
+
 function lumiaslider_create_db_table() {
 	// Get WPDB Object
 	global $wpdb;
@@ -89,6 +93,7 @@ function lumiaslider_create_db_table() {
 	// Execute the query
 	dbDelta( $sql_img );
 }
+
 function lumia_reg_function() {
 	
 	register_setting( 'lumia-settings-group', 'lumia_mode' );
@@ -109,6 +114,7 @@ function lumia_reg_function() {
 	register_setting( 'lumia-settings-group', 'lumia_auto' );
 	register_setting( 'lumia-settings-group', 'lumia_pause' );
 }
+
 function load_lumia_stylesheet() {
 	
 	if( !is_admin() ){
@@ -134,18 +140,21 @@ function load_lumia_stylesheet() {
 		}
 	}
 }
+
 /********************************************************/
 /*               Enqueue Content Scripts                */
 /********************************************************/
+
 function load_lumia_scripts() {
 	
 	if( !is_admin() ){
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'jquery-effects-core ', array( 'jquery' ), '1.3' );
+		wp_enqueue_script( 'jquery-effects-core', array( 'jquery' ), '1.3' );
 		wp_enqueue_script( 'fitvids', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.fitvids.js', array( 'jquery' ), '1.0' );
 		wp_enqueue_script( 'wlslider', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.wlslider.js', array( 'jquery' ), '1.1.0' );
 	}
 }
+
 function lumia_scripts() {
 	
 	if( $_REQUEST['page'] == 'lumia_sliders' ){
@@ -158,39 +167,41 @@ function lumia_scripts() {
 		}
 	}
 }
+
 function lumia_media_admin_scripts() {
 	
 	if( is_admin() && $_REQUEST['page'] == 'lumia_sliders' ){
 	?>
-<script type="text/javascript">
-	jQuery( document ).ready(function() {
-									  
-		jQuery( '.imgbutton' ).click(function() {
-			window.send_to_editor = function(html) {
-				imgurl		=	jQuery( 'img', html ).attr( 'src' );
-				jQuery( '#input_image' ).val( imgurl );
-				jQuery( '.imagediv' ).css( 'display', 'table-row' );
-				jQuery( '#image_src' ).css( 'display', 'block' );
-				jQuery( '#image_src' ).attr( 'src', imgurl );
-				//tb_remove();
-			}
-		});
-		
-		jQuery( '.thumbbutton' ).click(function() {
-			window.send_to_editor = function(html) {
-				imgurl		=	jQuery( 'img', html ).attr( 'src' );
-				jQuery( '#input_image_thumb' ).val( imgurl );
-				jQuery( '.imagediv' ).css( 'display', 'table-row' );
-				jQuery( '#image_thumb_src' ).css( 'display', 'block' );
-				jQuery( '#image_thumb_src' ).attr( 'src', imgurl );
-				//tb_remove();
-			}
-		});
-	});
-	</script>
-<?php
+	<script type="text/javascript">
+        jQuery( document ).ready(function() {
+                                          
+            jQuery( '.imgbutton' ).click(function() {
+                window.send_to_editor = function(html) {
+                    imgurl		=	jQuery( 'img', html ).attr( 'src' );
+                    jQuery( '#input_image' ).val( imgurl );
+                    jQuery( '.imagediv' ).css( 'display', 'table-row' );
+                    jQuery( '#image_src' ).css( 'display', 'block' );
+                    jQuery( '#image_src' ).attr( 'src', imgurl );
+                    //tb_remove();
+                }
+            });
+            
+            jQuery( '.thumbbutton' ).click(function() {
+                window.send_to_editor = function(html) {
+                    imgurl		=	jQuery( 'img', html ).attr( 'src' );
+                    jQuery( '#input_image_thumb' ).val( imgurl );
+                    jQuery( '.imagediv' ).css( 'display', 'table-row' );
+                    jQuery( '#image_thumb_src' ).css( 'display', 'block' );
+                    jQuery( '#image_thumb_src' ).attr( 'src', imgurl );
+                    //tb_remove();
+                }
+            });
+        });
+        </script>
+	<?php
 	}
 }
+
 function load_lumiaslider_scripts(){
 	
 	$mode					=	( get_option( 'lumia_mode' ) )				?	get_option( 'lumia_mode' )				:	'horizontal';
@@ -231,6 +242,7 @@ function load_lumiaslider_scripts(){
 	
 	echo $scripts;
 }
+
 function show_lumiaslider( $args ) {?>
 <?php 
     global $wpdb;
