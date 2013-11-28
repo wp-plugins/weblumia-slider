@@ -1,5 +1,5 @@
 <?php include( 'lumia-slider-functions.php' );?>
-<?php $sliderid					=	( $_REQUEST['image_id'] ) ? $_REQUEST['image_id'] : '';?>
+<?php $sliderid					=	( $_REQUEST['id'] ) ? $_REQUEST['id'] : '';?>
 
 <?php /* code for save slider name */?>
 <?php if( $_REQUEST['page'] == 'lumia_sliders' && $_REQUEST['slider_saved'] == 'true' && $_REQUEST['action'] != 'add' ) {
@@ -7,13 +7,13 @@
 }
 
 /* code for getting slider data */
-if( $_REQUEST['action'] == 'edit' && isset( $_REQUEST['image_id'] ) ){
-	$slider				=	slider_list_by_id( $_REQUEST['image_id'] );
+if( $_REQUEST['action'] == 'edit' && isset( $_REQUEST['id'] ) ){
+	$slider				=	slider_list_by_id( $_REQUEST['id'] );
 }
 
 /* code for remove slider name */
-if( $_REQUEST['action'] == 'remove' && isset( $_REQUEST['image_id'] ) ){
-	remove_slider( $_REQUEST['image_id'] );
+if( $_REQUEST['action'] == 'remove' && isset( $_REQUEST['id'] ) ){
+	remove_slider( $_REQUEST['id'] );
 }
 
 /* code for list slider images */
