@@ -46,7 +46,6 @@ function lumia_add_menu() {
 	add_menu_page( 'Lumia Slider', 'Lumia Slider', 'administrator', 'lumia_settings', 'lumia_menu_function' );
 	add_submenu_page( 'lumia_settings', 'Lumia Slider Settings', 'Settings', 'manage_options', 'lumia_settings', 'lumia_add_menu' ); 
 	add_submenu_page( 'lumia_settings', 'All Sliders', 'All Sliders', 'manage_options', 'lumia_sliders', 'lumia_all_sliders' ); 
-	//add_submenu_page( 'lumia_settings', 'Add New Slider', 'Add New Slider', 'manage_options', 'lumia_add_new', 'lumia_add_slider' ); 
 }
 /********************************************************/
 /*           lumia sliders database table create          */
@@ -84,8 +83,6 @@ function lumiaslider_create_db_table() {
 			  `date_m` int(11) NOT NULL,
 			  PRIMARY KEY (`id`)
 			);";
-	// Executing the query
-	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 	// Execute the query
 	dbDelta( $sql_img );
 }
