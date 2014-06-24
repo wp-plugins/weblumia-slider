@@ -109,7 +109,7 @@ function populate_slider_lists(){
 			$i++;
 		}
 	}else{
-		$html			=	'<tr><td colspan="5">No data to display</td></tr>';
+		$html			=	'<tr><td colspan="7">No data to display</td></tr>';
 	}
 	return $html;
 }
@@ -167,7 +167,7 @@ function populate_slider_images_by_id( $id ){
 			$i++;
 		}
 	}else{
-		$html			=	'<tr><td colspan="6">No data to display</td></tr>';
+		$html			=	'<tr><td colspan="7">No data to display</td></tr>';
 	}
 	
 	return $html;
