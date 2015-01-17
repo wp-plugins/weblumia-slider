@@ -3,7 +3,7 @@
 Plugin Name: Lumia Slider
 Plugin URI: http://www.weblumia.com
 Description: Fully loaded, responsive and video content slider
-Version: 2.2
+Version: 2.3
 Author: Jinesh.P.V
 Author URI: http://www.weblumia.com
 */
