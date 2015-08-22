@@ -108,27 +108,12 @@ function lumia_reg_function() {
 }
 function load_lumia_stylesheet() {
 	
-	if( !is_admin() ){
-		$stylesheetURL 			= 	plugins_url( 'wlslider.css', __FILE__ );
-		$stylesheet 			= 	dirname( __FILE__ )  . '/wlslider.css';
-		
-		if ( file_exists( $stylesheet ) ) {
-			
-			wp_register_style( 'lumia-stylesheets', $stylesheetURL );
-			wp_enqueue_style( 'lumia-stylesheets' );
-		}
+	if( is_admin() && isset( $_REQUEST['page'] ) ){
+		wp_enqueue_style( 'wl-admin', plugins_url( 'admin.css', __FILE__ ) );	
 	}
 	
-	if( is_admin() && isset( $_REQUEST['page'] ) ){
-		
-		$adminstylesheetURL 		= 	plugins_url( 'admin.css', __FILE__ );
-		$adminstylesheet 			= 	dirname( __FILE__ )  . '/admin.css';
-		
-		if ( file_exists( $adminstylesheet ) ) {
-			
-			wp_register_style( 'lumia-admin-stylesheets', $adminstylesheetURL );
-			wp_enqueue_style( 'lumia-admin-stylesheets' );
-		}
+	if( !is_admin() ){
+		wp_enqueue_style( 'wlslider.css', plugins_url( 'wlslider.css', __FILE__ ) );
 	}
 }
 /********************************************************/
@@ -139,8 +124,8 @@ function load_lumia_scripts() {
 	if( !is_admin() ){
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'jquery-effects-core ', array( 'jquery' ), '1.3' );
-		wp_enqueue_script( 'fitvids', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.fitvids.js', array( 'jquery' ), '1.0' );
-		wp_enqueue_script( 'wlslider', WP_PLUGIN_URL . '/weblumia-slider/js/jquery.wlslider.js', array( 'jquery' ), '1.1.0' );
+		wp_enqueue_script( 'fitvids', plugins_url( '/js/jquery.fitvids.js', __FILE__ ), array( 'jquery' ), '1.0' );
+		wp_enqueue_script( 'wlslider', plugins_url( '/js/jquery.wlslider.js', __FILE__ ), array( 'jquery' ), '1.1.0' );
 	}
 }
 function lumia_scripts() {
@@ -256,7 +241,7 @@ function show_lumiaslider( $args ) {?>
 				
 				$video_id	=	parse_vimeo( stripslashes( $slides['custom_html'] ) ) ;
 				$html		.=	'<li><iframe src="http://player.vimeo.com/video/' . $video_id . '?color=ff9933&amp;loop=1" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></li>';
-			}elseif( $slides['image'] != '' ){
+			} elseif ( $slides['image'] != '' ){
 				
 				$html		.=	'<li><img src="' . $slides['image'] . '" title="' . stripslashes( $slides['custom_html'] ) . '" /></li>';
 			}else{
@@ -490,72 +475,78 @@ function lumia_menu_function() {?>
 /*                   Widget settings                    */
 /********************************************************/
 class lumia_slider_widget extends WP_Widget {
-function lumia_slider_widget() {
-	$widget_ops = array( 'classname' => 'lumiaslider_widget', 'description' => __('Insert a slider with Lumia Slider', 'lumiaslider') );
-	$control_ops = array( 'id_base' => 'lumiaslider_widget' );
-	$this->WP_Widget( 'lumiaslider_widget', __('Lumia Slider', 'lumiaslider'), $widget_ops, $control_ops );
-}
-function widget( $args, $instance ) {
-	extract( $args );
-	$title = apply_filters('widget_title', $instance['title'] );
-	echo $before_widget;
-	if ( $title )
-		echo $before_title . $title . $after_title;
-	// Call layerslider_init to show the slider
-	echo do_shortcode('[layerslider id="'.$instance['id'].'"]');
-	echo $after_widget;
-}
-function update( $new_instance, $old_instance ) {
-	$instance = $old_instance;
-	/* Strip tags for title and name to remove HTML (important for text inputs). */
-	$instance['id'] = strip_tags( $new_instance['id'] );
-	$instance['title'] = strip_tags( $new_instance['title'] );
-	return $instance;
-}
-function form( $instance ) {
-		// Defaults
-		$defaults = array( 'title' => __('Lumia Slider', 'lumiaslider'));
-		$instance = wp_parse_args( (array) $instance, $defaults );
-		// Get WPDB Object
-		global $wpdb;
-		// Table name
-		$table_name = $wpdb->prefix . "lumiaslider";
-		// Get sliders
-		$sliders = $wpdb->get_results( "SELECT * FROM $table_name
-											WHERE flag_hidden = '0' AND flag_deleted = '0'
-											ORDER BY date_c ASC LIMIT 100" );
-		?>
-<p>
-  <label for="<?php echo $this->get_field_id( 'id' ); ?>">
-    <?php _e('Choose a slider:', 'lumiaslider') ?>
-  </label>
-  <br>
-  <?php if($sliders != null && !empty($sliders)) { ?>
-  <select id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>">
-    <?php foreach($sliders as $item) : ?>
-    <?php $name = empty($item->name) ? 'Unnamed' : $item->name; ?>
-    <?php if(($item->id) == $instance['id']) { ?>
-    <option value="<?php echo $item->id?>" selected="selected"><?php echo $name ?> | #<?php echo $item->id?></option>
-    <?php } else { ?>
-    <option value="<?php echo $item->id?>"><?php echo $name ?> | #<?php echo $item->id?></option>
-    <?php } ?>
-    <?php endforeach; ?>
-  </select>
-  <?php } else { ?>
-  <?php _e("You didn't create any slider yet.", "Lumia Slider", "lumiaslider") ?>
-  <?php } ?>
-</p>
-<p>
-  <label for="<?php echo $this->get_field_id( 'title' ); ?>">
-    <?php _e('Title:', 'lumiaslider'); ?>
-  </label>
-  <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
-</p>
-<?php 
+	
+	function __construct() {
+		$widget_ops = array( 'classname' => 'lumiaslider_widget', 'description' => __('Insert a slider with Lumia Slider', 'lumiaslider') );
+		$control_ops = array( 'id_base' => 'lumiaslider_widget' );
+		parent::__construct( 'lumiaslider_widget', __( 'Lumia Slider', 'lumiaslider' ), $widget_ops, $control_ops );
+	}
+	
+	function widget( $args, $instance ) {
+		extract( $args );
+		$title = apply_filters('widget_title', $instance['title'] );
+		echo $before_widget;
+		if ( $title )
+			echo $before_title . $title . $after_title;
+		// Call layerslider_init to show the slider
+		echo do_shortcode('[layerslider id="'.$instance['id'].'"]');
+		echo $after_widget;
+	}
+	
+	function update( $new_instance, $old_instance ) {
+		$instance = $old_instance;
+		/* Strip tags for title and name to remove HTML (important for text inputs). */
+		$instance['id'] = strip_tags( $new_instance['id'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		return $instance;
+	}
+	
+	function form( $instance ) {
+			// Defaults
+			$defaults = array( 'title' => __('Lumia Slider', 'lumiaslider'));
+			$instance = wp_parse_args( (array) $instance, $defaults );
+			// Get WPDB Object
+			global $wpdb;
+			// Table name
+			$table_name = $wpdb->prefix . "lumiaslider";
+			// Get sliders
+			$sliders = $wpdb->get_results( "SELECT * FROM $table_name
+												WHERE flag_hidden = '0' AND flag_deleted = '0'
+												ORDER BY date_c ASC LIMIT 100" );
+			?>
+            <p>
+              <label for="<?php echo $this->get_field_id( 'id' ); ?>">
+                <?php _e('Choose a slider:', 'lumiaslider') ?>
+              </label>
+              <br>
+              <?php if($sliders != null && !empty($sliders)) { ?>
+              <select id="<?php echo $this->get_field_id( 'id' ); ?>" name="<?php echo $this->get_field_name( 'id' ); ?>">
+                <?php foreach($sliders as $item) : ?>
+                <?php $name = empty($item->name) ? 'Unnamed' : $item->name; ?>
+                <?php if(($item->id) == $instance['id']) { ?>
+                <option value="<?php echo $item->id?>" selected="selected"><?php echo $name ?> | #<?php echo $item->id?></option>
+                <?php } else { ?>
+                <option value="<?php echo $item->id?>"><?php echo $name ?> | #<?php echo $item->id?></option>
+                <?php } ?>
+                <?php endforeach; ?>
+              </select>
+              <?php } else { ?>
+              <?php _e("You didn't create any slider yet.", "Lumia Slider", "lumiaslider") ?>
+              <?php } ?>
+            </p>
+            <p>
+              <label for="<?php echo $this->get_field_id( 'title' ); ?>">
+                <?php _e('Title:', 'lumiaslider'); ?>
+              </label>
+              <input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
+            </p>
+            <?php 
 	}
 }
 function parse_youtube( $link ){
- 
+ 	
+	$matches = '';
+	
 	$regexstr = '~
 		                                # Match Youtube link and embed code
 		(?:                             # Group to match embed codes
@@ -585,10 +576,20 @@ function parse_youtube( $link ){
 			|</embed></object>          # or Match the end of the older embed
 		)?                              # End Group of last bit of embed code
 		~ix';
-	preg_match( $regexstr, $link, $matches );
-	return $matches[1];
+		
+	if ( ( is_array( $link ) ) ) {		
+		preg_match( $regexstr, $link, $matches );
+		if( !empty( $matches ) )
+			return $matches[1];
+		else
+			return ;
+	} else {
+		return ;
+	}
 }
 function parse_vimeo( $link ){
+	
+	$matches = '';
  
 	$regexstr = '~
 		                            # Match Vimeo link and embed code
@@ -606,6 +607,14 @@ function parse_vimeo( $link ){
 		(?:[^>]*></iframe>)?        # Match the end of the iframe
 		(?:<p>.*</p>)?              # Match any title information stuff
 		~ix';
-	preg_match( $regexstr, $link, $matches );
-	return $matches[1];
+	
+	if ( ( is_array( $link ) ) ) {
+		preg_match( $regexstr, $link, $matches );
+		if( !empty( $matches ) )
+			return $matches[1];
+		else
+			return ;
+	} else {
+		return ;
+	}
 }
